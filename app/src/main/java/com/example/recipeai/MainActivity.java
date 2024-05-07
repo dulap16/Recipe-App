@@ -37,5 +37,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         activityResultLauncher.launch(intent);
     }
+
+    private Bitmap getImageFromActivityResult(ActivityResult result) {
+        Bundle bundle = result.getData().getExtras();
+        Bitmap bitmap = (Bitmap) bundle.get("data");
+        return bitmap;
+    }
+
     }
 }
