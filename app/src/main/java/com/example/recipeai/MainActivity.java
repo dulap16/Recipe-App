@@ -33,5 +33,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         });
+    private void takePhotoActivity() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        activityResultLauncher.launch(intent);
+    }
     }
 }
