@@ -37,7 +37,21 @@ public class MainActivity extends AppCompatActivity {
         imagePreview = findViewById(R.id.photoPreview);
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult o) {
+                Bitmap bitmap = getImageFromActivityResult(o);
+                showImage(bitmap);
+
+                try {
+                    saveBitmapToGallery(bitmap);
+
+                    Toast.makeText(MainActivity.this, "Image saved to gallery", Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
+
         takePhotoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
