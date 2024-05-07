@@ -36,7 +36,14 @@ public class MainActivity extends AppCompatActivity {
         takePhotoBtn = findViewById(R.id.takePhotoBtn);
         imagePreview = findViewById(R.id.photoPreview);
 
+        takePhotoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePhotoActivity();
+            }
         });
+    }
+
     private void takePhotoActivity() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         activityResultLauncher.launch(intent);
