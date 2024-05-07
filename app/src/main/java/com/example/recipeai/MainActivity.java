@@ -47,5 +47,19 @@ public class MainActivity extends AppCompatActivity {
     private void showImage(Bitmap bitmap) {
         imagePreview.setImageBitmap(bitmap);
     }
+
+    private void saveBitmapToGallery(Bitmap bitmap) throws IOException {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.Audio.Media.TITLE, "Recent Picture");
+        contentValues.put(MediaStore.Images.Media.DESCRIPTION, "?");
+        contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+
+        Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+
+        OutputStream outputStream = getContentResolver().openOutputStream(uri);
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+        outputStream.flush();
+        outputStream.close();
     }
 }
