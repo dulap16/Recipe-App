@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         takePhotoBtn = findViewById(R.id.takePhotoBtn);
         imagePreview = findViewById(R.id.photoPreview);
 
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        });
         takePhotoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
