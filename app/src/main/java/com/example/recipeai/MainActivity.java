@@ -23,6 +23,11 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int CAMERA_ACTION_CODE = 1;
+    Button takePhotoBtn;
+    ImageView imagePreview;
+    ActivityResultLauncher<Intent> activityResultLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
