@@ -32,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        takePhotoBtn = findViewById(R.id.takePhotoBtn);
+        imagePreview = findViewById(R.id.photoPreview);
+
         });
     private void takePhotoActivity() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
