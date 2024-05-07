@@ -44,5 +44,8 @@ public class MainActivity extends AppCompatActivity {
         return bitmap;
     }
 
+    private void showImage(Bitmap bitmap) {
+        imagePreview.setImageBitmap(bitmap);
+    }
     }
 }
