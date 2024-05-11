@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 /*Bitmap bitmap = getImageFromActivityResult(o);
                 showImage(bitmap);
                 String text = readPhotoText(bitmap);
+                scannedTextView.setText(text);
 
                 try {
                     saveBitmapToGallery(bitmap);
