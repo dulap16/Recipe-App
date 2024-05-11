@@ -49,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
     Button copyBtn;
     Button takePhotoBtn;
     ImageView imagePreview;
+    TextView scannedTextView;
     ActivityResultLauncher<Intent> activityResultLauncher;
+
+    private String currentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
