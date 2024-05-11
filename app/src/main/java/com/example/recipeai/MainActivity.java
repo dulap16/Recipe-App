@@ -35,7 +35,10 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int REQUEST_CAMERA_CODE = 100;
     public static final int CAMERA_ACTION_CODE = 1;
+
+    Button copyBtn;
     Button takePhotoBtn;
     ImageView imagePreview;
     ActivityResultLauncher<Intent> activityResultLauncher;
