@@ -45,7 +45,7 @@
         android:id="@+id/textView"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="dashjljfk ald flkajsdl kjfasdl jfadskj flkasdj"
+        android:text="No text scanned"
         android:textAlignment="center"
         android:textColor="#F6F2F2"
         android:textStyle="bold"
