@@ -91,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
 
                 }*/
 
+                Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
+                showImage(bitmap);
+
+                String text = readPhotoText(bitmap);
+                scannedTextView.setText(text);
             }
         });
 
