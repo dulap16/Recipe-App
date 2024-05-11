@@ -62,12 +62,14 @@ public class MainActivity extends AppCompatActivity {
         copyBtn = findViewById(R.id.copyBtn);
         takePhotoBtn = findViewById(R.id.takePhotoBtn);
         imagePreview = findViewById(R.id.photoPreview);
+        scannedTextView = findViewById(R.id.scannedTextView);
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult o) {
-                Bitmap bitmap = getImageFromActivityResult(o);
+                /*Bitmap bitmap = getImageFromActivityResult(o);
                 showImage(bitmap);
+                String text = readPhotoText(bitmap);
 
                 try {
                     saveBitmapToGallery(bitmap);
@@ -76,8 +78,21 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                if(o.getResultCode() == Activity.RESULT_OK) {
+                    try {
+                        Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
+                                getContentResolver(), imageUri);
+                        imagePreview.setImageBitmap(thumbnail);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }*/
+
             }
         });
+
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{
@@ -119,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveBitmapToGallery(Bitmap bitmap) throws IOException {
         ContentValues contentValues = new ContentValues();
+        /*ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.Audio.Media.TITLE, "Recent Picture");
         contentValues.put(MediaStore.Images.Media.DESCRIPTION, "?");
         contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
@@ -129,7 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
         outputStream.flush();
-        outputStream.close();
+        outputStream.close();*/
+
     }
 
     private String readPhotoText(Bitmap bitmap) {
