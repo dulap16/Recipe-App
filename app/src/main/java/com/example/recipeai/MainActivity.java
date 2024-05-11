@@ -80,6 +80,15 @@ public class MainActivity extends AppCompatActivity {
                 takePhotoActivity();
             }
         });
+
+        copyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap bitmap = imagePreview.getDrawingCache();
+                String text = readPhotoText(bitmap);
+                copyToClipboard(text);
+            }
+        });
     }
 
     private void takePhotoActivity() {
