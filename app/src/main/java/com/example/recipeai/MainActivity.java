@@ -111,6 +111,25 @@ public class MainActivity extends AppCompatActivity {
         outputStream.flush();
         outputStream.close();
     }
+
+    private String readPhotoText(Bitmap bitmap) {
+        TextRecognizer recognizer = new TextRecognizer.Builder(this).build();
+        if (!recognizer.isOperational()) {
+            Toast.makeText(this, "Error occured", Toast.LENGTH_SHORT);
+        } else {
+            Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+            SparseArray<TextBlock> array = recognizer.detect(frame);
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < array.size(); i++) {
+                TextBlock textBlock = array.valueAt(i);
+                stringBuilder.append(textBlock.getValue());
+                stringBuilder.append('\n');
+            }
+            return stringBuilder.toString();
+        }
+        return "Error";
+    }
+
     private void copyToClipboard(String string) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Copied Text", string);
