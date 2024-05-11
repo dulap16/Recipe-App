@@ -119,6 +119,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void takePhotoActivity() {
+    private Uri createImageUri(String fileName, File storageDirectory) throws IOException {
+        File imageFile = File.createTempFile(fileName, ".jpg", storageDirectory);
+        currentPhotoPath = imageFile.getAbsolutePath();
+
+        return FileProvider.getUriForFile(this, "com.example.recipeai.fileprovider", imageFile);
+    }
     private void launchTakePhotoActivity(Uri imageUri) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
