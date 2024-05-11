@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void takePhotoActivity() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         activityResultLauncher.launch(intent);
     }
 
