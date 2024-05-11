@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        copyBtn = findViewById(R.id.copyBtn);
         takePhotoBtn = findViewById(R.id.takePhotoBtn);
         imagePreview = findViewById(R.id.photoPreview);
 
