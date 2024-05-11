@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveBitmapToGallery(Bitmap bitmap) throws IOException {
-        ContentValues contentValues = new ContentValues();
         /*ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.Audio.Media.TITLE, "Recent Picture");
         contentValues.put(MediaStore.Images.Media.DESCRIPTION, "?");
@@ -148,6 +147,14 @@ public class MainActivity extends AppCompatActivity {
         outputStream.flush();
         outputStream.close();*/
 
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "New Picture");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
+        Uri imageUri = getContentResolver().insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        activityResultLauncher.launch(intent);
     }
 
     private String readPhotoText(Bitmap bitmap) {
