@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         takePhotoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePhotoActivity();
+                takePhoto();
             }
         });
 
@@ -118,7 +118,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void takePhotoActivity() {
+
+    private void takePhoto() {
+        String fileName = "photo";
+        File storageDirectory = createPhotoFolder();
+
+        try {
+            Uri imageUri = createImageUri(fileName, storageDirectory);
+            Log.i("kkkk", "merge?");
+
+            launchTakePhotoActivity(imageUri);
+        } catch(IOException e) {
+            Log.i("kkkk", e.toString());
+        }
+    }
+
     private File createPhotoFolder() {
         File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
