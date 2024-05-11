@@ -37,6 +37,7 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 
