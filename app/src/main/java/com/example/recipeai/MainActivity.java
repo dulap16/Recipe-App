@@ -119,6 +119,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void takePhotoActivity() {
+    private File createPhotoFolder() {
+        File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        return storageDirectory;
+    }
+
     private Uri createImageUri(String fileName, File storageDirectory) throws IOException {
         File imageFile = File.createTempFile(fileName, ".jpg", storageDirectory);
         currentPhotoPath = imageFile.getAbsolutePath();
