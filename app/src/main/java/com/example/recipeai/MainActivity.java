@@ -111,4 +111,10 @@ public class MainActivity extends AppCompatActivity {
         outputStream.flush();
         outputStream.close();
     }
+    private void copyToClipboard(String string) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Copied Text", string);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
+    }
 }
