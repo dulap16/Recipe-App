@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -67,31 +68,8 @@ public class MainActivity extends AppCompatActivity {
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult o) {
-                /*Bitmap bitmap = getImageFromActivityResult(o);
-                showImage(bitmap);
-                String text = readPhotoText(bitmap);
-                scannedTextView.setText(text);
 
-                try {
-                    saveBitmapToGallery(bitmap);
-
-                    Toast.makeText(MainActivity.this, "Image saved to gallery", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                if(o.getResultCode() == Activity.RESULT_OK) {
-                    try {
-                        Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
-                                getContentResolver(), imageUri);
-                        imagePreview.setImageBitmap(thumbnail);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }*/
-
-                Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
+                Bitmap bitmap = rotateBitmap90(BitmapFactory.decodeFile(currentPhotoPath));
                 showImage(bitmap);
 
                 String text = readPhotoText(bitmap);
@@ -156,30 +134,11 @@ public class MainActivity extends AppCompatActivity {
         activityResultLauncher.launch(intent);
     }
 
-    private Bitmap getImageFromActivityResult(ActivityResult result) {
-        Bundle bundle = result.getData().getExtras();
-        Bitmap bitmap = (Bitmap) bundle.get("data");
-        return bitmap;
-    }
-
     private void showImage(Bitmap bitmap) {
         imagePreview.setImageBitmap(bitmap);
     }
 
     private void saveBitmapToGallery(Bitmap bitmap) throws IOException {
-        /*ContentValues contentValues = new ContentValues();
-        contentValues.put(MediaStore.Audio.Media.TITLE, "Recent Picture");
-        contentValues.put(MediaStore.Images.Media.DESCRIPTION, "?");
-        contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-
-        Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-
-        OutputStream outputStream = getContentResolver().openOutputStream(uri);
-
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-        outputStream.flush();
-        outputStream.close();*/
-
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "New Picture");
         values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
