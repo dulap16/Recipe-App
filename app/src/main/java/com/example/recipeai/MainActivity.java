@@ -173,4 +173,10 @@ public class MainActivity extends AppCompatActivity {
         clipboard.setPrimaryClip(clip);
         Toast.makeText(this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
     }
+
+    private Bitmap rotateBitmap90(Bitmap bitmap) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90f);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
 }
