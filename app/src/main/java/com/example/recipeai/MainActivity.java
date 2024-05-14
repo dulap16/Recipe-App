@@ -228,6 +228,59 @@ public class MainActivity extends AppCompatActivity {
         return question;
     }
 
+    private void processResponse(String response) {
+        String[] newIngredients = response.split(",");
+        for (String ingredient : newIngredients) {
+            addNewIngredient(ingredient);
+        }
+
+        scannedTextView.setText(response);
+    }
+
+    private void callApi(String question) {
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("model", "text-davinci-003");
+            jsonBody.put("prompt", question);
+            jsonBody.put("max_tokens", 4000);
+            jsonBody.put("temperature", 0);
+        } catch(JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
+        Request request = new Request.Builder()
+                .url("https://api.openai.com/v1/completions")
+                .header("Authorization", "Bearer sk-proj-BDMJPGscVuXibChUTrnyT3BlbkFJSfNYDqaTBOSQsSoYs8Uq")
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+//                if(response.isSuccessful()) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        Log.i("wtferror", jsonObject.toString());
+                        JSONArray jsonArray = jsonObject.getJSONArray("choices");
+                        String result = jsonArray.getJSONObject(0).getString("text");
+
+                        processResponse(result);
+                    } catch(JSONException e) {
+                        Log.i("wtferror", e.toString());
+                    }
+//                } else {
+//                    /*Toast.makeText(MainActivity.this, "Failed to load response: " + response.body().toString(), Toast.LENGTH_SHORT).show();*/
+//                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Toast.makeText(MainActivity.this, "Failed to load response: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void addNewIngredient(String ingredient) {
         availableIngredients.add(ingredient);
     }
