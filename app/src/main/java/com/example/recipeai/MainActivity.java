@@ -156,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                 showImage(bitmap);
 
                 String text = readPhotoText(bitmap);
-                scannedTextView.setText(text);
 //                callApi((composeQuestion("asd alsdk a lkjsdfhj h w oei wpo po  alskd fja chicken jadsl efij ljl akj h carrot jkl lkajs alkjf wekl salmon klj alkh alk jlkw egg")));
                 String response = chatGPT.generateChatGPTResponse(composeQuestion("asd alsdk a lkjsdfhj h w oei wpo po  alskd fja chicken jadsl efij ljl akj h carrot jkl lkajs alkjf wekl salmon klj alkh alk jlkw egg"));
 
