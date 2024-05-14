@@ -56,6 +56,8 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    public String LANGUAGE = "EN";
+
     public static final int REQUEST_CAMERA_CODE = 100;
     public static final int CAMERA_ACTION_CODE = 1;
 
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncher;
 
     private String currentPhotoPath;
+
+    HashMap<String, String> questionTemplate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,4 +167,8 @@ public class MainActivity extends AppCompatActivity {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
+
+    private void changeLanguage(String newLanguage) {
+        LANGUAGE = newLanguage;
+    }
 }
