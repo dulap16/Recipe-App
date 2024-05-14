@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
     TextView scannedTextView;
     ActivityResultLauncher<Intent> activityResultLauncher;
 
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    OkHttpClient client = new OkHttpClient();
+
     private String currentPhotoPath;
 
     HashMap<String, String> questionTemplate;
@@ -116,6 +119,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     ChatGPT chatGPT;
+
+    Thread thread = new Thread(new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                // Your code goes here
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,6 +157,10 @@ public class MainActivity extends AppCompatActivity {
 
                 String text = readPhotoText(bitmap);
                 scannedTextView.setText(text);
+//                callApi((composeQuestion("asd alsdk a lkjsdfhj h w oei wpo po  alskd fja chicken jadsl efij ljl akj h carrot jkl lkajs alkjf wekl salmon klj alkh alk jlkw egg")));
+                String response = chatGPT.generateChatGPTResponse(composeQuestion("asd alsdk a lkjsdfhj h w oei wpo po  alskd fja chicken jadsl efij ljl akj h carrot jkl lkajs alkjf wekl salmon klj alkh alk jlkw egg"));
+
+                scannedTextView.setText(response);
             }
         });
 
