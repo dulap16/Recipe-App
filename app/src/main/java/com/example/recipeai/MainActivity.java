@@ -1,14 +1,8 @@
 package com.example.recipeai;
 
 import android.Manifest;
-import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -29,7 +23,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -40,14 +33,12 @@ import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CAMERA_CODE = 100;
     public static final int CAMERA_ACTION_CODE = 1;
 
-    Button copyBtn;
     Button takePhotoBtn;
     ImageView imagePreview;
     TextView scannedTextView;
@@ -60,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        copyBtn = findViewById(R.id.copyBtn);
         takePhotoBtn = findViewById(R.id.takePhotoBtn);
         imagePreview = findViewById(R.id.photoPreview);
         scannedTextView = findViewById(R.id.scannedTextView);
@@ -88,15 +78,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 takePhoto();
-            }
-        });
-
-        copyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bitmap bitmap = imagePreview.getDrawingCache();
-                String text = readPhotoText(bitmap);
-                copyToClipboard(text);
             }
         });
     }
@@ -138,17 +119,6 @@ public class MainActivity extends AppCompatActivity {
         imagePreview.setImageBitmap(bitmap);
     }
 
-    private void saveBitmapToGallery(Bitmap bitmap) throws IOException {
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "New Picture");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
-        Uri imageUri = getContentResolver().insert(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        activityResultLauncher.launch(intent);
-    }
-
     private String readPhotoText(Bitmap bitmap) {
         TextRecognizer recognizer = new TextRecognizer.Builder(this).build();
         if (!recognizer.isOperational()) {
@@ -167,16 +137,10 @@ public class MainActivity extends AppCompatActivity {
         return "Error";
     }
 
-    private void copyToClipboard(String string) {
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("Copied Text", string);
-        clipboard.setPrimaryClip(clip);
-        Toast.makeText(this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
-    }
-
     private Bitmap rotateBitmap90(Bitmap bitmap) {
         Matrix matrix = new Matrix();
         matrix.postRotate(90f);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
+
 }
