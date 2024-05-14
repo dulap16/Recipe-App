@@ -125,6 +125,13 @@ public class MainActivity extends AppCompatActivity {
         imagePreview = findViewById(R.id.photoPreview);
         scannedTextView = findViewById(R.id.scannedTextView);
 
+        questionTemplate = new HashMap<>();
+        questionTemplate.put("EN", "I am going to give you a list of words, separated by the space character. I want you to look through that list of words and respond with only the words that resemble an ingredient that you can cook food with. Most of the words are gibberish, but you neet do return a list of words, separated by the space character, that resemble an ingredient that you can cook food with. Here is the list of words:");
+        questionTemplate.put("RO", "Vă voi oferi o listă de cuvinte, separate prin caracterul spațiu. Vreau să te uiți prin acea listă de cuvinte și să răspunzi doar cu cuvintele care seamănă cu un ingredient cu care poți găti mâncarea. Majoritatea cuvintelor sunt farfurii, dar trebuie să returnați o listă de cuvinte, separate prin caracterul spațiu, care seamănă cu un ingredient cu care puteți găti mâncarea. Iată lista de cuvinte:");
+
+        availableIngredients = new ArrayList<>();
+        chatGPT = new ChatGPT();
+
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult o) {
