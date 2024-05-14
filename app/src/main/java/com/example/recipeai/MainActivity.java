@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     HashMap<String, String> questionTemplate;
 
+    private ArrayList<String> availableIngredients;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,6 +169,15 @@ public class MainActivity extends AppCompatActivity {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
+
+
+    private void addNewIngredient(String ingredient) {
+        availableIngredients.add(ingredient);
+    }
+
+    private void removeIngredient(String ingredient) {
+        availableIngredients.remove(ingredient);
+    }
 
     private void changeLanguage(String newLanguage) {
         LANGUAGE = newLanguage;
