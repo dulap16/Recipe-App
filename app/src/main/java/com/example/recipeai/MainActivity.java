@@ -72,6 +72,50 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> availableIngredients;
 
+    public class ChatGPT {
+        public String generateChatGPTResponse(String userPrompt) {
+            String apiURL = "https://api.openai.com/v1/chat/completions";
+            String apiKey = "PASTE_YOUR_API_KEY";
+            String LLMname = "gpt-3.5-turbo";
+            try {
+                // Create URL object
+                URL url = new URL(apiURL);
+                // Open connection
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                // Set the request method to POST
+                connection.setRequestMethod("POST");
+                // Set request headers
+                connection.setRequestProperty("Authorization", "Bearer " + apiKey);
+                connection.setRequestProperty("Content-Type", "application/json");
+                // Create the request body
+                String requestBody = "{\"model\": \"" + LLMname + "\", \"messages\": [{\"role\": \"user\", \"content\": \"" + userPrompt + "\"}]}";
+                // Enable input/output streams
+                connection.setDoOutput(true);
+                // Write the request body
+                try (OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream())) {
+                    writer.write(requestBody);
+                    writer.flush();
+                }
+                // Read the response
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    return getLLMResponse(response.toString());
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("Error interacting with the ChatGPT API: " + e.getMessage(), e);
+            }
+        }
+        private String getLLMResponse(String response) {
+            int firstChar = response.indexOf("content") + 11;
+            int lastChar = response.indexOf("\"", firstChar);
+            return response.substring(firstChar, lastChar);
+        }
+    }
+    ChatGPT chatGPT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
