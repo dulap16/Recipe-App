@@ -36,6 +36,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation("com.google.android.gms:play-services-vision:19.0.0+")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("io.ktor:ktor-client-android:2.2.4")
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
