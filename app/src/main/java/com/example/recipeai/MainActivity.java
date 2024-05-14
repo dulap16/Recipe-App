@@ -221,6 +221,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // sk-proj-vfjdjaHsxgfF1re4ifwNT3BlbkFJx0foG6uGB8DArptCT1ZB
+
+    private String composeQuestion(String scannedText) {
+        String question = questionTemplate.get(LANGUAGE) + scannedText;
+        return question;
+    }
 
     private void addNewIngredient(String ingredient) {
         availableIngredients.add(ingredient);
