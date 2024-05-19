@@ -63,8 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
     public String LANGUAGE = "EN";
 
+    public static final int API_SCAN_INGREDIENTS = 1;
+    public static final int API_GIVE_RECIPIES = 2;
+    public static final int API_GIVE_COLOR = 3;
+
     public static final int REQUEST_CAMERA_CODE = 100;
-    public static final int CAMERA_ACTION_CODE = 1;
 
     Button takePhotoBtn;
     ImageView imagePreview;
@@ -79,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
     HashMap<String, String> questionTemplate;
 
     private ArrayList<String> availableIngredients;
+
+    private ActivityMainBinding binding;
 
     public class ChatGPT {
         public String generateChatGPTResponse(String userPrompt) {
