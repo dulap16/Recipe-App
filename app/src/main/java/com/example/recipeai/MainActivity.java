@@ -330,6 +330,10 @@ public class MainActivity extends AppCompatActivity {
 
         scannedTextView.setText(ingredientResponse);
     }
+
+    private String getAPIResponseContent(JSONObject json) throws JSONException {
+        String response = json.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
+        return response;
     }
 
     private void addNewIngredient(String ingredient) {
