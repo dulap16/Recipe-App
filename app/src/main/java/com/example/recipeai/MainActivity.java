@@ -295,9 +295,11 @@ public class MainActivity extends AppCompatActivity {
         return jsonBody;
     }
 
+    private Request createRequestForAPI(JSONObject jsonObject) {
+        RequestBody body = RequestBody.create(jsonObject.toString(), JSON);
         Request request = new Request.Builder()
-                .url("https://api.openai.com/v1/completions")
-                .header("Authorization", "Bearer sk-proj-BDMJPGscVuXibChUTrnyT3BlbkFJSfNYDqaTBOSQsSoYs8Uq")
+                .url("https://api.openai.com/v1/chat/completions")
+                .header("Authorization", "Bearer sk-proj-We1WBjAjIQJAtjeDjfoaT3BlbkFJy6V2vsvQapVMbcP8znos")
                 .post(body)
                 .build();
 
