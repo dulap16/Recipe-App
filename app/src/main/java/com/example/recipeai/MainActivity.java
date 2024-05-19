@@ -134,7 +134,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setContentView(R.layout.activity_main);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setOnItemSelectedListener(item -> {
+            Log.i("kkkk", "replace");
+            int id = item.getItemId();
+            if (id == R.id.kitchen) {
+                replaceFragment(new TheKitchenFragment());
+            } else if (id == R.id.settings) {
+                replaceFragment(new SettingsFragment());
+            } else if (id == R.id.take_photo) {
+                replaceFragment(new YourFridgeFragment());
+            }
+            return true;
+        });
 
         takePhotoBtn = findViewById(R.id.takePhotoBtn);
         imagePreview = findViewById(R.id.photoPreview);
