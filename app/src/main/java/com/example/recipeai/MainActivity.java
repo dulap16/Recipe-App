@@ -202,11 +202,9 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             Uri imageUri = createImageUri(fileName, storageDirectory);
-            Log.i("kkkk", "merge?");
 
             launchTakePhotoActivity(imageUri);
         } catch(IOException e) {
-            Log.i("kkkk", e.toString());
         }
     }
 
@@ -257,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // sk-proj-vfjdjaHsxgfF1re4ifwNT3BlbkFJx0foG6uGB8DArptCT1ZB
+    // sk-proj-BDMJPGscVuXibChUTrnyT3BlbkFJSfNYDqaTBOSQsSoYs8Uq
 
     private String composeQuestion(String scannedText) {
         String question = questionTemplate.get(LANGUAGE) + scannedText;
@@ -276,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response.body().string());
 
                     processAPIResponse(getAPIResponseContent(jsonObject), requestCode);
+                } catch (JSONException e) {
                     Log.i("wtferror", e.toString());
 
                     ingredientResponse = "Error";
