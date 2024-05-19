@@ -322,6 +322,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+    private void processRecognizedIngredients(String ingredientResponse) {
+        String[] newIngredients = ingredientResponse.split(",");
+        for (String ingredient : newIngredients) {
+            addNewIngredient(ingredient);
+        }
+
+        scannedTextView.setText(ingredientResponse);
+    }
     }
 
     private void addNewIngredient(String ingredient) {
