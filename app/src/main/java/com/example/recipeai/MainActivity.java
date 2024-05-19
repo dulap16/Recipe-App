@@ -264,13 +264,31 @@ public class MainActivity extends AppCompatActivity {
         return question;
     }
 
-    private void processResponse(String response) {
-        String[] newIngredients = response.split(",");
-        for (String ingredient : newIngredients) {
-            addNewIngredient(ingredient);
-        }
+    private void callApi(String question, int requestCode) {
+        JSONObject jsonBody = createJSONBodyForAPI(question);
 
-        scannedTextView.setText(response);
+        Request request = createRequestForAPI(jsonBody);
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                try {
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+
+                    processAPIResponse(getAPIResponseContent(jsonObject), requestCode);
+                    Log.i("wtferror", e.toString());
+
+                    ingredientResponse = "Error";
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Toast.makeText(MainActivity.this, "Failed to load response: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                ingredientResponse = "Error";
+            }
+        });
     }
 
     private JSONObject createJSONBodyForAPI(String question) {
