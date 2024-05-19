@@ -315,6 +315,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Failed to load response: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    private void processAPIResponse(String response, int requestCode) throws JSONException {
+        switch (requestCode) {
+            case API_SCAN_INGREDIENTS:
+                processRecognizedIngredients(response);
+                break;
+        }
+    }
     }
 
     private void addNewIngredient(String ingredient) {
