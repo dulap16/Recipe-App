@@ -130,18 +130,7 @@ public class MainActivity extends AppCompatActivity {
     }
     ChatGPT chatGPT;
 
-    Thread thread = new Thread(new Runnable() {
-
-        @Override
-        public void run() {
-            try {
-                // Your code goes here
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    });
-
+    public String ingredientResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,10 +155,28 @@ public class MainActivity extends AppCompatActivity {
                 showImage(bitmap);
 
                 String text = readPhotoText(bitmap);
-//                callApi((composeQuestion("asd alsdk a lkjsdfhj h w oei wpo po  alskd fja chicken jadsl efij ljl akj h carrot jkl lkajs alkjf wekl salmon klj alkh alk jlkw egg")));
-                String response = chatGPT.generateChatGPTResponse(composeQuestion("asd alsdk a lkjsdfhj h w oei wpo po  alskd fja chicken jadsl efij ljl akj h carrot jkl lkajs alkjf wekl salmon klj alkh alk jlkw egg"));
+                scannedTextView.setText(text);
+                Thread thread = new Thread(new Runnable() {
 
-                scannedTextView.setText(response);
+                    @Override
+                    public void run() {
+                        callApi(composeQuestion("asd alsdk a lkjsdfhj h w oei wpo po  alskd fja chicken jadsl efij ljl akj h carrot jkl lkajs alkjf wekl salmon klj alkh alk jlkw egg"), API_SCAN_INGREDIENTS);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    processAPIResponse(ingredientResponse, API_SCAN_INGREDIENTS);
+                                } catch (JSONException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        });
+                    }
+                });
+
+                thread.start();
+
+                // scannedTextView.setText(response);
             }
         });
 
