@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     public class ChatGPT {
         public String generateChatGPTResponse(String userPrompt) {
             String apiURL = "https://api.openai.com/v1/chat/completions";
-            String apiKey = "PASTE_YOUR_API_KEY";
+            String apiKey = "sk-proj-ORSDepYCISfSahYvLbk8T3BlbkFJSbvuBcGEMaZ0Q8csRa9E";
             String LLMname = "gpt-3.5-turbo";
             try {
                 // Create URL object
