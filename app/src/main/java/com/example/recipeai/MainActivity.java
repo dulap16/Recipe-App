@@ -355,4 +355,13 @@ public class MainActivity extends AppCompatActivity {
     private void changeLanguage(String newLanguage) {
         LANGUAGE = newLanguage;
     }
+
+    private void replaceFragment(Fragment fragment) {
+        Log.i("kkkk", "fragm");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit();
+    }
 }
