@@ -5,8 +5,43 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2B2525"
+    android:background="@color/theme_alabaster"
     tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/accent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/profile_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/baseline_person_24" />
+
+        <ImageView
+            android:id="@+id/settings_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/baseline_settings_24" />
+
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -14,70 +49,23 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/takePhotoBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Take photo!" />
-
-        <ImageView
-            android:id="@+id/photoPreview"
-            android:layout_width="match_parent"
-            android:layout_height="331dp"
-            android:background="#000000"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/scannedTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No text scanned"
-            android:textAlignment="center"
-            android:textColor="#F6F2F2"
-            android:textStyle="bold" />
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/theme_alabaster"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
-
-    <ImageView
-        android:id="@+id/photoPreview"
-        android:layout_width="315dp"
-        android:layout_height="301dp"
-        android:background="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/takePhotoBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/scannedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No text scanned"
-        android:textAlignment="center"
-        android:textColor="#F6F2F2"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/takePhotoBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photoPreview" />
         app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/bottom_nav_menu">
+        app:menu="@menu/bottom_nav_menu" />
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
