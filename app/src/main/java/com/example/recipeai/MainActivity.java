@@ -289,8 +289,6 @@ public class MainActivity extends AppCompatActivity {
 
     // sk-proj-BDMJPGscVuXibChUTrnyT3BlbkFJSfNYDqaTBOSQsSoYs8Uq
 
-    private String composeQuestion(String scannedText) {
-        String question = questionTemplate.get(LANGUAGE) + scannedText;
     private String composeRecognizeIngredients(String scannedText) {
         String question = recognizeQuestionTemplate.get(LANGUAGE) + scannedText;
         return question;
@@ -332,7 +330,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Toast.makeText(MainActivity.this, "Failed to load response: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.i("wtferror", e.toString());
 
                 ingredientResponse = "Error";
             }
@@ -343,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("model", "gpt-3.5-turbo");
-            jsonBody.put("max_tokens", 100);
+            jsonBody.put("max_tokens", 1000);
             jsonBody.put("temperature", 0);
 
             JSONArray jsonArray = new JSONArray();
@@ -487,7 +485,6 @@ public class MainActivity extends AppCompatActivity {
         thread.start();
     }
 
-        scannedTextView.setText(ingredientResponse);
     public void getRecipes() {
         String ingredientsString = "";
         for (Food food : availableIngredients) {
