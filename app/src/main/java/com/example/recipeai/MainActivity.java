@@ -378,6 +378,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void addNewIngredient(String ingredient) {
         availableIngredients.add(ingredient);
+    public void addShoppingListItem(String item) {
+        shoppingListManager.addItem(new Food(item));
+    }
+
+    public void removeShoppingListItem(String item) {
+        shoppingListManager.removeItem(new Food(item));
     }
 
     public void changeCurrentFragment(Fragment f) {
