@@ -59,7 +59,25 @@ public class FavouriteAdapter extends ArrayAdapter<Recipe> {
         return convertView;
     }
 
+    public static String stringListToString(ArrayList<String> list) {
+        String result = "";
+        for(String item : list) {
+            result += item + "\n";
+        }
+
+        return result;
+    }
+
     public FavouriteRecipeManager getMAFavouriteRecipeManager() {
         return ((MainActivity)getContext()).getFavouriteRecipeManager();
     }
+
+    public int colorToInt(Color color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return color.toArgb();
+        }
+
+        return 0;
+    }
+
 }
