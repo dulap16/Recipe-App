@@ -213,8 +213,19 @@ public class MainActivity extends AppCompatActivity {
 
         profileView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                takePhoto();
+            public void onClick(View view) {
+                currentFragment = new ProfileFragment();
+
+                replaceFragment(currentFragment);
+            }
+        });
+
+        settingsView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentFragment = new SettingsFragment();
+
+                replaceFragment(currentFragment);
             }
         });
     }
