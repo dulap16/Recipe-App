@@ -59,4 +59,7 @@ public class FavouriteAdapter extends ArrayAdapter<Recipe> {
         return convertView;
     }
 
+    public FavouriteRecipeManager getMAFavouriteRecipeManager() {
+        return ((MainActivity)getContext()).getFavouriteRecipeManager();
+    }
 }
