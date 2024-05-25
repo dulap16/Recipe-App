@@ -205,7 +205,13 @@ public class MainActivity extends AppCompatActivity {
             }, REQUEST_CAMERA_CODE);
         }
 
-        takePhotoBtn.setOnClickListener(new View.OnClickListener() {
+        profileView = findViewById(R.id.profile_view);
+        settingsView = findViewById(R.id.settings_view);
+        favouriteRecipesButtonView = findViewById(R.id.favourite_recipes_button);
+        shoppingListButtonView = findViewById(R.id.shopping_list_button);
+        familyAccountButtonView = findViewById(R.id.family_account_button);
+
+        profileView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 takePhoto();
