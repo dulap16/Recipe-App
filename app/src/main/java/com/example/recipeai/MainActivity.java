@@ -396,6 +396,7 @@ public class MainActivity extends AppCompatActivity {
 
     public ArrayList<Leftover> getLeftoverArrayList() { return leftoverArrayList; }
 
+    public void replaceFragment(Fragment fragment) {
         Log.i("kkkk", "fragm");
 
         FragmentManager fragmentManager = getSupportFragmentManager();
