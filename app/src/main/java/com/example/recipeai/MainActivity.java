@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void takePhoto() {
+    public void takePhoto() {
         String fileName = "photo";
         File storageDirectory = createPhotoFolder();
 
@@ -255,20 +255,17 @@ public class MainActivity extends AppCompatActivity {
 
         return FileProvider.getUriForFile(this, "com.example.recipeai.fileprovider", imageFile);
     }
+
     private void launchTakePhotoActivity(Uri imageUri) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         activityResultLauncher.launch(intent);
     }
 
-    private void showImage(Bitmap bitmap) {
-        imagePreview.setImageBitmap(bitmap);
-    }
-
     private String readPhotoText(Bitmap bitmap) {
         TextRecognizer recognizer = new TextRecognizer.Builder(this).build();
         if (!recognizer.isOperational()) {
-            Toast.makeText(this, "Error occured", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Error occurred", Toast.LENGTH_SHORT);
         } else {
             Frame frame = new Frame.Builder().setBitmap(bitmap).build();
             SparseArray<TextBlock> array = recognizer.detect(frame);
