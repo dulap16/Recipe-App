@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/food_item"
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding = "6dp"
+    android:layout_width="match_parent"
+    android:background="@color/theme_alabaster"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/primary"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/color_indicator">
+
+        <TextView
+            android:layout_width="6dp"
+            android:layout_margin="3dp"
+            android:layout_height="match_parent"
+            android:background = "@color/AliceBlue"
+            android:id="@+id/recipe_color"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin = "4dp"
+            android:orientation="vertical"
+            android:id="@+id/recipe_info">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/accent_text"
+                tools:text="Leftover Name"
+                android:textSize="32dp"
+                android:layout_margin="4dp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/leftover_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                tools:text="Leftover uses"
+                android:textSize="16dp"
+                android:layout_margin="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:id="@+id/leftover_uses"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
