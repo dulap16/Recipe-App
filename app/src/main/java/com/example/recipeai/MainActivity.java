@@ -84,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
     private HashMap<String, String> giveRecipeQuestionTemplate;
     private HashMap<String, String> giveLeftOverQuestionTemplate;
 
-    private ArrayList<String> availableIngredients;
+    private ArrayList<Food> availableIngredients;
+    private ArrayList<Recipe> recipeArrayList;
+    private ArrayList<Leftover> leftoverArrayList;
 
     private ActivityMainBinding binding;
 
