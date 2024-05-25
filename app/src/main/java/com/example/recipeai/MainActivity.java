@@ -367,6 +367,35 @@ public class MainActivity extends AppCompatActivity {
         for (String ingredient : newIngredients) {
             addNewIngredient(ingredient);
         }
+    private void processLeftoverResponse(String response) {
+        leftoverArrayList = new ArrayList<>();
+
+        String tokens[] = response.split("LEFTOVER:");
+        for(int i = 1; i < tokens.length; i++) {
+            Leftover l = Leftover.parseTextToLeftover(tokens[i]);
+
+            leftoverArrayList.add(l);
+        }
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            getLeftoversFragment().responseReceived(leftoverArrayList);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+            }
+        });
+
+        thread.start();
+    }
+
     public void getRecipes(ArrayList<Food> ingredients) {
         String ingredientsString = "";
         for (Food food : ingredients) {
