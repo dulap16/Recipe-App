@@ -367,6 +367,24 @@ public class MainActivity extends AppCompatActivity {
         for (String ingredient : newIngredients) {
             addNewIngredient(ingredient);
         }
+    public void getRecipes(ArrayList<Food> ingredients) {
+        String ingredientsString = "";
+        for (Food food : ingredients) {
+            ingredientsString += food.getName() + " ";
+        }
+
+        String finalIngredientsString = ingredientsString;
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                callApi(composeGiveRecipe(finalIngredientsString), API_GIVE_RECIPES);
+            }
+        });
+
+        thread.start();
+    }
 
         scannedTextView.setText(ingredientResponse);
     public void getRecipes() {
