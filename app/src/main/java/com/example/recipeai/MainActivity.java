@@ -380,15 +380,15 @@ public class MainActivity extends AppCompatActivity {
         availableIngredients.add(ingredient);
     }
 
-    private void removeIngredient(String ingredient) {
-        availableIngredients.remove(ingredient);
+    public void changeCurrentFragment(Fragment f) {
+        currentFragment = f;
     }
 
     private void changeLanguage(String newLanguage) {
         LANGUAGE = newLanguage;
     }
 
-    private void replaceFragment(Fragment fragment) {
+    public FavouriteRecipeManager getFavouriteRecipeManager() {
         return favouriteRecipeManager;
     }
 
