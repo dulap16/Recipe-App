@@ -369,6 +369,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         scannedTextView.setText(ingredientResponse);
+    public void getRecipes() {
+        String ingredientsString = "";
+        for (Food food : availableIngredients) {
+            ingredientsString += food.getName() + " ";
+        }
+
+        String finalIngredientsString = ingredientsString;
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                callApi(composeGiveRecipe(finalIngredientsString), API_GIVE_RECIPES);
+            }
+        });
+
+        thread.start();
+    }
 
     public void getLeftovers(String ingredients) {
         goToLeftoverFragment();
