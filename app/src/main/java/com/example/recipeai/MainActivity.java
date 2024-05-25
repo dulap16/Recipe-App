@@ -366,7 +366,40 @@ public class MainActivity extends AppCompatActivity {
         String[] newIngredients = ingredientResponse.split(",");
         for (String ingredient : newIngredients) {
             addNewIngredient(ingredient);
+    private void processRecipeResponse(String response) {
+        try {
+            String recipes[] = response.split("RECIPE:");
+            for(int i = 1; i < recipes.length; i++) {
+                String recipe = recipes[i];
+                Recipe r = Recipe.parseTextToRecipe(recipe);
+
+                Log.i("Recipe", r.toString());
+
+                recipeArrayList.add(r);
+            }
+
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                getKitchenFragment().setRecipes(recipeArrayList);
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    });
+                }
+            });
+
+            thread.start();
+        } catch (Exception e) {
+            Log.i("normalError", e.toString());
         }
+    }
+
     private void processLeftoverResponse(String response) {
         leftoverArrayList = new ArrayList<>();
 
