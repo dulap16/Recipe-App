@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShoppingListFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/theme_alabaster">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="@color/theme_alabaster">
+
+            <EditText
+                android:id="@+id/new_shopping_item_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft ="5dp"
+                android:layout_weight="2"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="New Item"
+                android:textColor="@color/theme_rosybrown"/>
+
+            <Button
+                android:id="@+id/new_shopping_item_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Add"
+                android:textColor="@color/theme_rosybrown"
+                android:backgroundTint="@color/accent"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/shopping_list_view"
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"/>
+    </LinearLayout>
+
+</FrameLayout>
