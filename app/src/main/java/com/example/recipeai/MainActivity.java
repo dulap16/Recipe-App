@@ -360,6 +360,16 @@ public class MainActivity extends AppCompatActivity {
             case API_SCAN_INGREDIENTS:
                 processRecognizedIngredients(response);
                 break;
+            case API_GIVE_COLOR:
+                processColorsResponse(response);
+                break;
+            case API_GIVE_RECIPES:
+                processRecipeResponse(response);
+                break;
+            case API_GIVE_LEFT_OVER:
+                processLeftoverResponse(response);
+                break;
+            default:
         }
     }
     private void processRecognizedIngredients(String ingredientResponse) {
