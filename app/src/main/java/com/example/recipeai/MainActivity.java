@@ -376,8 +376,28 @@ public class MainActivity extends AppCompatActivity {
         return response;
     }
 
-    private void addNewIngredient(String ingredient) {
-        availableIngredients.add(ingredient);
+    private ArrayList<String> foodToStringList(ArrayList<Food> foodList) {
+        ArrayList<String> stringList = new ArrayList<>();
+        for (Food food : foodList) {
+            stringList.add(food.getName());
+        }
+        return stringList;
+    }
+
+
+    public void addIngredient(String ingredient) {
+        availableIngredients.add(new Food(ingredient));
+    }
+
+    public void removeIngredient(String ingredient) {
+        for(Food food : availableIngredients) {
+            if(food.getName().equals(ingredient)) {
+                availableIngredients.remove(food);
+                break;
+            }
+        }
+    }
+
     public void addShoppingListItem(String item) {
         shoppingListManager.addItem(new Food(item));
     }
