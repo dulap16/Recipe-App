@@ -389,6 +389,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void replaceFragment(Fragment fragment) {
+        return favouriteRecipeManager;
+    }
+
+    public ShoppingListManager getShoppingListManager() { return shoppingListManager; }
+
+    public ArrayList<Leftover> getLeftoverArrayList() { return leftoverArrayList; }
+
         Log.i("kkkk", "fragm");
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -396,4 +403,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.commit();
     }
+
+
+    // TODO:
+    //        - ADD FOOD COLOR
 }
