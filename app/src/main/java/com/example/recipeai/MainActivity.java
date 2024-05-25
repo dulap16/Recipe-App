@@ -167,16 +167,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onActivityResult(ActivityResult o) {
 
+                TakePhotoFragment f = (TakePhotoFragment)currentFragment;
+
                 Bitmap bitmap = rotateBitmap90(BitmapFactory.decodeFile(currentPhotoPath));
-                showImage(bitmap);
+                f.changePhotoPreview(bitmap);
 
                 String text = readPhotoText(bitmap);
-                scannedTextView.setText(text);
+                f.changeScannedText(text);
                 Thread thread = new Thread(new Runnable() {
 
                     @Override
                     public void run() {
-                        callApi(composeQuestion("asd alsdk a lkjsdfhj h w oei wpo po  alskd fja chicken jadsl efij ljl akj h carrot jkl lkajs alkjf wekl salmon klj alkh alk jlkw egg"), API_SCAN_INGREDIENTS);
+                        callApi(composeRecognizeIngredients(text), API_SCAN_INGREDIENTS);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
