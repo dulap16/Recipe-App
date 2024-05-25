@@ -59,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
     public String LANGUAGE = "EN";
 
     public static final int API_SCAN_INGREDIENTS = 1;
-    public static final int API_GIVE_RECIPIES = 2;
+    public static final int API_GIVE_RECIPES = 2;
     public static final int API_GIVE_COLOR = 3;
+    public static final int API_GIVE_LEFT_OVER = 4;
 
     public static final int REQUEST_CAMERA_CODE = 100;
 
