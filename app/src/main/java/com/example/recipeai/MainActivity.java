@@ -369,6 +369,45 @@ public class MainActivity extends AppCompatActivity {
         }
 
         scannedTextView.setText(ingredientResponse);
+
+    private TakePhotoFragment getTakePhotoFragment() {
+        try {
+            return (TakePhotoFragment) currentFragment;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private TheKitchenFragment getKitchenFragment() {
+        try {
+            return (TheKitchenFragment) currentFragment;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private SettingsFragment getSettingsFragment() {
+        try {
+            return (SettingsFragment) currentFragment;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private YourFridgeFragment getFridgeFragment() {
+        try {
+            return (YourFridgeFragment) currentFragment;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private LeftoversFragment getLeftoversFragment() {
+        try {
+            return (LeftoversFragment) currentFragment;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void goToLeftoverFragment() {
