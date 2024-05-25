@@ -291,6 +291,23 @@ public class MainActivity extends AppCompatActivity {
 
     private String composeQuestion(String scannedText) {
         String question = questionTemplate.get(LANGUAGE) + scannedText;
+    private String composeRecognizeIngredients(String scannedText) {
+        String question = recognizeQuestionTemplate.get(LANGUAGE) + scannedText;
+        return question;
+    }
+
+    private String composeFindColor(String ingredients) {
+        String question = findColorQuestionTemplate.get(LANGUAGE) + ingredients;
+        return question;
+    }
+
+    private String composeGiveRecipe(String ingredients) {
+        String question = giveRecipeQuestionTemplate.get(LANGUAGE) + ingredients;
+        return question;
+    }
+
+    private String composeGiveLeftovers(String ingredients) {
+        String question = giveLeftOverQuestionTemplate.get(LANGUAGE) + ingredients;
         return question;
     }
 
