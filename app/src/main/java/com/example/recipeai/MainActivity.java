@@ -108,14 +108,19 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnItemSelectedListener(item -> {
-            Log.i("kkkk", "replace");
             int id = item.getItemId();
             if (id == R.id.kitchen) {
-                replaceFragment(new TheKitchenFragment());
-            } else if (id == R.id.settings) {
-                replaceFragment(new SettingsFragment());
+                currentFragment = new TheKitchenFragment();
+
+                replaceFragment(currentFragment);
+            } else if (id == R.id.fridge) {
+                currentFragment = YourFridgeFragment.newInstance(foodToStringList(availableIngredients));
+
+                replaceFragment(currentFragment);
             } else if (id == R.id.take_photo) {
-                replaceFragment(new YourFridgeFragment());
+                currentFragment = new TakePhotoFragment();
+
+                replaceFragment(currentFragment);
             }
             return true;
         });
