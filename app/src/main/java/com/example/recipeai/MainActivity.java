@@ -79,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
     private String currentPhotoPath;
 
-    HashMap<String, String> questionTemplate;
+    private HashMap<String, String> recognizeQuestionTemplate;
+    private HashMap<String, String> findColorQuestionTemplate;
+    private HashMap<String, String> giveRecipeQuestionTemplate;
+    private HashMap<String, String> giveLeftOverQuestionTemplate;
 
     private ArrayList<String> availableIngredients;
 
