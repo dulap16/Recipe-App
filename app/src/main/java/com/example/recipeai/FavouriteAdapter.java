@@ -40,6 +40,22 @@ public class FavouriteAdapter extends ArrayAdapter<Recipe> {
         INSTRUCTIONS = convertView.findViewById(R.id.favourite_INSTRUCTIONS);
         colorIndicator = convertView.findViewById(R.id.favourite_color);
         unfavoriteRecipe = convertView.findViewById(R.id.unfavorite_recipe);
+
+        currentRecipeName.setText(currentRecipe.getName());
+        recipeIngredients.setText(stringListToString(currentRecipe.getIngredients()));
+        recipeInstructions.setText(stringListToString(currentRecipe.getInstructions()));
+        INGREDIENTS.setText("INGREDIENTS");
+        INSTRUCTIONS.setText("INSTRUCTIONS");
+        colorIndicator.setBackgroundColor(Color.BLACK);
+
+        unfavoriteRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMAFavouriteRecipeManager().removeRecipe(currentRecipe);
+                notifyDataSetChanged();
+            }
+        });
+
         return convertView;
     }
 
