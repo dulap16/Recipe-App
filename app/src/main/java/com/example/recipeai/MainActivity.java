@@ -366,6 +366,11 @@ public class MainActivity extends AppCompatActivity {
         String[] newIngredients = ingredientResponse.split(",");
         for (String ingredient : newIngredients) {
             addNewIngredient(ingredient);
+    private void processColorsResponse(String response) {
+        String[] colors = response.split("\n");
+
+        // GIVE FOOD COLOR
+    }
     private void processRecipeResponse(String response) {
         try {
             String recipes[] = response.split("RECIPE:");
