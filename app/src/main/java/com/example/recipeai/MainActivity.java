@@ -113,16 +113,43 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        takePhotoBtn = findViewById(R.id.takePhotoBtn);
-        imagePreview = findViewById(R.id.photoPreview);
-        scannedTextView = findViewById(R.id.scannedTextView);
+        bottomNav.setSelectedItemId(R.id.take_photo);
 
-        questionTemplate = new HashMap<>();
-        questionTemplate.put("EN", "I am going to give you a list of words, separated by the space character. I want you to look through that list of words and respond with only the words that resemble an ingredient that you can cook food with. Most of the words are gibberish, but you neet do return a list of words, separated by the space character, that resemble an ingredient that you can cook food with. Here is the list of words:");
-        questionTemplate.put("RO", "Vă voi oferi o listă de cuvinte, separate prin caracterul spațiu. Vreau să te uiți prin acea listă de cuvinte și să răspunzi doar cu cuvintele care seamănă cu un ingredient cu care poți găti mâncarea. Majoritatea cuvintelor sunt farfurii, dar trebuie să returnați o listă de cuvinte, separate prin caracterul spațiu, care seamănă cu un ingredient cu care puteți găti mâncarea. Iată lista de cuvinte:");
+        recognizeQuestionTemplate = new HashMap<>();
+        recognizeQuestionTemplate.put("EN", "I am going to give you a list of words, separated by the space character. I want you to look through that list of words and respond with only the words that resemble an ingredient that you can cook food with. Most of the words are gibberish, but you need do return a list of words, separated by the space character, that resemble an ingredient that you can cook food with. Here is the list of words:");
+        recognizeQuestionTemplate.put("RO", "Vă voi oferi o listă de cuvinte, separate prin caracterul spațiu. Vreau să te uiți prin acea listă de cuvinte și să răspunzi doar cu cuvintele care seamănă cu un ingredient cu care poți găti mâncarea. Majoritatea cuvintelor sunt farfurii, dar trebuie să returnați o listă de cuvinte, separate prin caracterul spațiu, care seamănă cu un ingredient cu care puteți găti mâncarea. Iată lista de cuvinte:");
+
+        findColorQuestionTemplate = new HashMap<>();
+        findColorQuestionTemplate.put("EN", "I am going to give you a list of ingredients, separated by the space character. I want you to look through that list of ingredients and respond, for each ingredient, the hexcode of the color that resembles it the best. So for each ingredient given, you respond in the format \"[That ingredient] [hexcode]\" starting with #, the hexcodes being seperated by '\\n' character. Here is the list of ingredients: ");
+        findColorQuestionTemplate.put("RO", "O să vă dau o listă de ingrediente, separate prin caracterul spațiu. Vreau să te uiți prin acea listă de ingrediente și să răspunzi, pentru fiecare ingredient, codul hexadecimal al culorii care îi seamănă cel mai bine. Deci, pentru fiecare ingredient dat, răspundeți in formatul \"[Acel ingredient] [cod hexadecimal]\", codul hexadecimal incepand cu #, codurile hexadecimale fiind separate printr-un caracter '\\n'. Iată lista ingredientelor:");
+
+        giveRecipeQuestionTemplate = new HashMap<>();
+        giveRecipeQuestionTemplate.put("EN", "I am going to give you a list of ingredients, separated by the space character. What I want you to do is give me 3 different recipes, each one of them using as many of the ingredients given as possible. It's ok to use other ingredients as well by try to find dishes centered around the ingredients given. Not every dish needs to use all of the ingredients given, it's ok to only have some of them! Add grammage, too. This is the format I want you to give the recipes in:\n" +
+                "\"FIRST RECIPE: [Recipe no. 1 name] - [cooking time] - [calories]\n" +
+                "INGREDIENTS\n" +
+                "1. [ingredient no. 1]\n" +
+                "2. [ingredient no.2]\n" +
+                "3. [so on...]\n" +
+                "INSTRUCTIONS\n" +
+                "1. [instruction no. 1]\n" +
+                "2. [instruction no.2]\n" +
+                "3. [so on...]\n" +
+                "\n" +
+                "SECOND RECIPE: [Recipe no. 2 name] \" and so on.\n" +
+                "This is the list of ingredients:");
+        giveRecipeQuestionTemplate.put("RO", "");
+
+        giveLeftOverQuestionTemplate = new HashMap<>();
+        giveLeftOverQuestionTemplate.put("EN", "I am going to give you a list of ingredients that were used in a recipe. We are trying to prevent food waste, so what I need you to do is select which of these ingredients may leave something behind, that is not normally used in food buy may be used for something else. For example, using eggs in a recipe will leave behind eggshells, at which point you will tell me some things I could do with eggshells. You can give me any number of uses. Ignore any numbers may appear in the ingredients given. This is the format I want you to answer in:\n" +
+                "\"LEFTOVER:[leftover name]\n" +
+                "USE:[how can I use it]\n" +
+                "USE:[another way to use it]\n" +
+                "USE:[so on...]\n" +
+                "LEFTOVER:... and so on\"\n" +
+                "Here is the list of ingredients: ");
+        giveLeftOverQuestionTemplate.put("RO", "");
 
         availableIngredients = new ArrayList<>();
-        chatGPT = new ChatGPT();
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
