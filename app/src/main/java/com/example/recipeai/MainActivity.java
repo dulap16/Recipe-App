@@ -370,6 +370,12 @@ public class MainActivity extends AppCompatActivity {
 
         scannedTextView.setText(ingredientResponse);
 
+    public void getLeftovers(String ingredients) {
+        goToLeftoverFragment();
+
+        callApi(composeGiveLeftovers(ingredients), API_GIVE_LEFT_OVER);
+    }
+
     private TakePhotoFragment getTakePhotoFragment() {
         try {
             return (TakePhotoFragment) currentFragment;
