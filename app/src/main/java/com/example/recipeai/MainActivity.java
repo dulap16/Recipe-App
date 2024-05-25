@@ -371,6 +371,13 @@ public class MainActivity extends AppCompatActivity {
         scannedTextView.setText(ingredientResponse);
     }
 
+    public void goToLeftoverFragment() {
+        currentFragment = new LeftoversFragment();
+
+        replaceFragment(currentFragment);
+    }
+
+
     private String getAPIResponseContent(JSONObject json) throws JSONException {
         String response = json.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
         return response;
