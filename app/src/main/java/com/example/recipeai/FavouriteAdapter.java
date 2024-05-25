@@ -26,5 +26,21 @@ public class FavouriteAdapter extends ArrayAdapter<Recipe> {
         this.context = context;
     }
 
+    public View getView(final int position, View convertView, ViewGroup parent) {
+
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        convertView = inflater.inflate(R.layout.favourite_item, parent, false);
+
+        final Recipe currentRecipe = list.get(position);
+
+        currentRecipeName = convertView.findViewById(R.id.favourite_name);
+        recipeIngredients = convertView.findViewById(R.id.favourite_ingredients);
+        recipeInstructions = convertView.findViewById(R.id.favourite_instructions);
+        INGREDIENTS = convertView.findViewById(R.id.favourite_INGREDIENTS);
+        INSTRUCTIONS = convertView.findViewById(R.id.favourite_INSTRUCTIONS);
+        colorIndicator = convertView.findViewById(R.id.favourite_color);
+        unfavoriteRecipe = convertView.findViewById(R.id.unfavorite_recipe);
+        return convertView;
+    }
 
 }
