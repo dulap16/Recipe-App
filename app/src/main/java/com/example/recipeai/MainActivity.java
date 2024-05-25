@@ -65,9 +65,13 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CAMERA_CODE = 100;
 
-    Button takePhotoBtn;
-    ImageView imagePreview;
-    TextView scannedTextView;
+    private FragmentManager fm;
+    private FavouriteRecipeManager favouriteRecipeManager;
+    private ShoppingListManager shoppingListManager;
+    private Fragment currentFragment;
+    private TextView favouriteRecipesButtonView, shoppingListButtonView, familyAccountButtonView;
+    private ImageView profileView, settingsView;
+
     ActivityResultLauncher<Intent> activityResultLauncher;
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
