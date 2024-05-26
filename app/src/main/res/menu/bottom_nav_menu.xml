@@ -12,6 +12,6 @@
         android:color="@color/theme_rosybrown"/>
     <item android:title="Your Fridge"
         android:icon="@drawable/kitchen_icon"
-        android:id="@+id/fridge"
-        android:color="@color/theme_rosybrown"/>
+        android:id="@+id/your_fridge"
+        android:color="@color/holo_orange_light"/>
 </menu>
