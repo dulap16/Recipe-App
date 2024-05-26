@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private ShoppingListManager shoppingListManager;
     private Fragment currentFragment;
     private TextView favouriteRecipesButtonView, shoppingListButtonView, familyAccountButtonView;
-    private ImageView profileView, settingsView;
+    private ImageView profileView;
 
     ActivityResultLauncher<Intent> activityResultLauncher;
 
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 currentFragment = new TheKitchenFragment();
 
                 replaceFragment(currentFragment);
-            } else if (id == R.id.fridge) {
+            } else if (id == R.id.your_fridge) {
                 currentFragment = YourFridgeFragment.newInstance(foodToStringList(availableIngredients));
 
                 replaceFragment(currentFragment);
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setSelectedItemId(R.id.take_photo);
 
         recognizeQuestionTemplate = new HashMap<>();
-        recognizeQuestionTemplate.put("EN", "I am going to give you a list of words, separated by the space character. I want you to look through that list of words and respond with only the words that resemble an ingredient that you can cook food with. Most of the words are gibberish, but you need do return a list of words, separated by the space character, that resemble an ingredient that you can cook food with. Here is the list of words:");
+        recognizeQuestionTemplate.put("EN", "I am going to give you a list of words, separated by the space character. I want you to look through that list of words and respond with only the words that resemble an ingredient that you can cook food with. Most of the words are gibberish, but you need do return a list of words, separated by the \";\" character, that resemble ingredients that you can cook food with. Here is the list of words:");
         recognizeQuestionTemplate.put("RO", "Vă voi oferi o listă de cuvinte, separate prin caracterul spațiu. Vreau să te uiți prin acea listă de cuvinte și să răspunzi doar cu cuvintele care seamănă cu un ingredient cu care poți găti mâncarea. Majoritatea cuvintelor sunt farfurii, dar trebuie să returnați o listă de cuvinte, separate prin caracterul spațiu, care seamănă cu un ingredient cu care puteți găti mâncarea. Iată lista de cuvinte:");
 
         findColorQuestionTemplate = new HashMap<>();
@@ -206,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         profileView = findViewById(R.id.profile_view);
-        settingsView = findViewById(R.id.settings_view);
         favouriteRecipesButtonView = findViewById(R.id.favourite_recipes_button);
         shoppingListButtonView = findViewById(R.id.shopping_list_button);
         familyAccountButtonView = findViewById(R.id.family_account_button);
@@ -215,15 +214,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 currentFragment = new ProfileFragment();
-
-                replaceFragment(currentFragment);
-            }
-        });
-
-        settingsView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                currentFragment = new SettingsFragment();
 
                 replaceFragment(currentFragment);
             }
@@ -330,8 +320,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.i("wtferror", e.toString());
-
                 ingredientResponse = "Error";
             }
         });
@@ -387,14 +375,14 @@ public class MainActivity extends AppCompatActivity {
             default:
         }
     }
-    private void processRecognizedIngredients(String ingredientResponse) {
+    private void processRecognizedIngredients(String response) {
         try {
-            String[] newIngredients = ingredientResponse.split(" ");
+            String[] newIngredients = response.split(";");
             for (String ingredient : newIngredients) {
                 addIngredient(ingredient);
             }
         } catch (Exception e) {
-            Log.i("normalError", e.toString());
+            return ;
         }
     }
 
@@ -405,6 +393,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void processRecipeResponse(String response) {
         try {
+            recipeArrayList = new ArrayList<>();
+
             String recipes[] = response.split("RECIPE:");
             for(int i = 1; i < recipes.length; i++) {
                 String recipe = recipes[i];
@@ -589,6 +579,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void removeShoppingListItem(String item) {
         shoppingListManager.removeItem(new Food(item));
+    }
+
+    public void addShoppingListItems(ArrayList<String> items) {
+        for(String item : items) {
+
+            if(item.equals(""))
+                continue;
+
+            shoppingListManager.addItem(new Food(parseNumberedItem(item)));
+        }
+    }
+
+    private String parseNumberedItem(String item) {
+        String[] parts = item.split(" ");
+        String finalString = "";
+        for(int i = 1; i < parts.length; i++)
+        {
+            if(parts[i].contains("("))
+                break;
+            else finalString = finalString + parts[i] + " ";
+        }
+
+        return finalString.trim();
     }
 
     public void changeCurrentFragment(Fragment f) {

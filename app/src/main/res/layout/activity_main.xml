@@ -27,18 +27,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="30dp"
             android:layout_marginBottom="5dp"
             android:src="@drawable/baseline_person_24" />
-
-        <ImageView
-            android:id="@+id/settings_view"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/baseline_settings_24" />
 
 
     </LinearLayout>
@@ -65,6 +55,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
+        app:itemTextColor="@color/primary_text"
+        app:itemIconTint="@color/accent_text"
         app:menu="@menu/bottom_nav_menu" />
 
 

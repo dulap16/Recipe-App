@@ -53,9 +53,18 @@ public class TheKitchenFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 recipes = new ArrayList<>();
+                setLoading();
                 loadRecipes();
             }
         });
+    }
+
+    private void setLoading() {
+        loadRecipesButton.setText("Loading...");
+    }
+
+    private void setLoaded() {
+        loadRecipesButton.setText("Load Recipes");
     }
 
     public void loadRecipes() {
@@ -63,6 +72,7 @@ public class TheKitchenFragment extends Fragment {
     }
 
     public void setRecipes(ArrayList<Recipe> recipes) {
+        setLoaded();
         this.recipes = recipes;
         updateList();
     }

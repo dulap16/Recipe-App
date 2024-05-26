@@ -47,7 +47,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
         favouriteRecipe = convertView.findViewById(R.id.favorite_recipe);
         useRecipe = convertView.findViewById(R.id.use_recipe);
 
-        currentRecipeName.setText(currentRecipe.getName());
+        currentRecipeName.setText(currentRecipe.getName() + " - " + currentRecipe.getCalories() + " calories - " + currentRecipe.getCookingTime() + " minutes");
         recipeIngredients.setText(stringListToString(currentRecipe.getIngredients()));
         recipeInstructions.setText(stringListToString(currentRecipe.getInstructions()));
         INGREDIENTS.setText("INGREDIENTS");
@@ -67,6 +67,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
             @Override
             public void onClick(View view) {
                 ((MainActivity)getContext()).getLeftovers(stringListToString(currentRecipe.getIngredients()));
+                ((MainActivity)getContext()).addShoppingListItems(currentRecipe.getIngredients());
             }
         });
 
