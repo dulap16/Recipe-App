@@ -4,11 +4,14 @@
 
     <item android:title="Take photo"
         android:icon="@drawable/take_photo"
-        android:id="@+id/take_photo"/>
+        android:id="@+id/take_photo"
+        android:color="@color/theme_rosybrown"/>
     <item android:title="The Kitchen"
         android:icon="@drawable/baseline_soup_kitchen_24"
-        android:id="@+id/kitchen"/>
+        android:id="@+id/kitchen"
+        android:color="@color/theme_rosybrown"/>
     <item android:title="Your Fridge"
         android:icon="@drawable/kitchen_icon"
-        android:id="@+id/settings"/>
+        android:id="@+id/fridge"
+        android:color="@color/theme_rosybrown"/>
 </menu>

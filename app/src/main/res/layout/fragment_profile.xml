@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/profile_container">
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:background="@color/theme_rosybrown"
+            android:src="@drawable/baseline_person_pin_24"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            tools:text = "Hello, User"
+            android:textSize="30dp"
+            android:textColor="@color/primary_text"
+            android:id="@+id/username_text"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:background="@color/accent"
+            tools:text = "Your favourite recipes"
+            android:textSize="30dp"
+            android:textColor="@color/primary_text"
+            android:id="@+id/favourite_recipes_button"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:background="@color/accent"
+            tools:text = "Shopping List"
+            android:textSize="30dp"
+            android:textColor="@color/primary_text"
+            android:id="@+id/shopping_list_button"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:background="@color/accent"
+            tools:text = "Family account"
+            android:textSize="30dp"
+            android:textColor="@color/primary_text"
+            android:id="@+id/family_account_button"/>
+
+    </LinearLayout>
+
+</FrameLayout>
