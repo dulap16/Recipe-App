@@ -76,6 +76,10 @@ public class Recipe {
         return this.cookingTime;
     }
 
+    public int getCalories() {
+        return this.calories;
+    }
+
     public ArrayList<String> getIngredients() {
         return this.ingredients;
     }
