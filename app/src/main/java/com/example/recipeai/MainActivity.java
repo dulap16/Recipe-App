@@ -591,6 +591,19 @@ public class MainActivity extends AppCompatActivity {
         shoppingListManager.removeItem(new Food(item));
     }
 
+    private String parseNumberedItem(String item) {
+        String[] parts = item.split(" ");
+        String finalString = "";
+        for(int i = 1; i < parts.length; i++)
+        {
+            if(parts[i].contains("("))
+                break;
+            else finalString = finalString + parts[i] + " ";
+        }
+
+        return finalString.trim();
+    }
+
     public void changeCurrentFragment(Fragment f) {
         currentFragment = f;
     }
