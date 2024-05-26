@@ -591,6 +591,16 @@ public class MainActivity extends AppCompatActivity {
         shoppingListManager.removeItem(new Food(item));
     }
 
+    public void addShoppingListItems(ArrayList<String> items) {
+        for(String item : items) {
+
+            if(item.equals(""))
+                continue;
+
+            shoppingListManager.addItem(new Food(parseNumberedItem(item)));
+        }
+    }
+
     private String parseNumberedItem(String item) {
         String[] parts = item.split(" ");
         String finalString = "";
